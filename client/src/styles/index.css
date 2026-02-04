@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "AvantGarde";
+  src: url("../assets/fonts/ITCAvantGardeStd-Md.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AvantGarde";
+  src: url("../assets/fonts/ITCAvantGardeStd-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-custom: "AvantGarde", sans-serif;
+}
+
+/* Applique au body directement */
+@layer base {
+  body {
+    font-family: var(--font-custom);
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  h3 {
+    text-transform: uppercase;
+  }
+}
+
+.title {
+  border-left: 20px solid black;
+}
