@@ -1,12 +1,11 @@
-import Content from "./components/Content";
-import Header from "./components/Header";
+import { RouterProvider } from "react-router";
+import routers from "./routes";
 
 function App() {
   return (
-    <main className="flex h-screen px-6 py-12">
-      <Header />
-      <Content />
-    </main>
+    <>
+      <RouterProvider router={routers} />
+    </>
   );
 }
 

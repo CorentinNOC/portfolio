@@ -18,12 +18,15 @@
 
 @theme {
   --font-custom: "AvantGarde", sans-serif;
+  --color-primary: #111827;
+  --color-secondary: #9ab2e9;
 }
 
-/* Applique au body directement */
 @layer base {
   body {
     font-family: var(--font-custom);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
   }
 
   a {
@@ -35,6 +38,73 @@
   }
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 .title {
-  border-left: 20px solid black;
+  border-left: 20px solid var(--color-secondary);
+}
+
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
+main:before {
+  content: "";
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url(../assets/noise.f8142aea.png);
+  width: 300%;
+  height: 300%;
+  animation: 8s steps(10, end) infinite grain;
+  position: fixed;
+  top: -100%;
+  left: -50%;
 }
