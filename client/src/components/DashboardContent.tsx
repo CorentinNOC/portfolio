@@ -51,7 +51,7 @@ export default function DashboardContent({
   };
 
   return (
-    <div className="min-h-screen bg-white p-12">
+    <main className="min-h-screen p-12">
       <div className="max-w-6xl mx-auto">
         <HeaderDashboard onAddClick={openModal} />
 
@@ -68,6 +68,6 @@ export default function DashboardContent({
           initialData={editingProject}
         />
       </div>
-    </div>
+    </main>
   );
 }

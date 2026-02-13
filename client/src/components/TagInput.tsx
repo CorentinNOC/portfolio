@@ -24,13 +24,13 @@ export default function TagInput({
           onKeyDown={(e) =>
             e.key === "Enter" && (e.preventDefault(), onAddTag())
           }
-          className="flex-1 px-4 py-3 border border-gray-300 focus:border-black focus:outline-none"
+          className="flex-1 px-4 py-3 border border-secondary focus:bg-secondary/15 focus:outline-none"
           placeholder="Ex: html & scss"
         />
         <button
           type="button"
           onClick={onAddTag}
-          className="px-6 bg-gray-200 hover:bg-gray-300 transition-colors"
+          className="px-6 border border-secondary hover:bg-secondary/25 cursor-pointer transition-colors"
         >
           +
         </button>
@@ -39,13 +39,13 @@ export default function TagInput({
         {tags.map((tag, index) => (
           <span
             key={index}
-            className="inline-flex items-center gap-2 bg-gray-100 px-4 py-2"
+            className="inline-flex items-center gap-2  border border-secondary bg-secondary/25 px-4 py-2"
           >
             {tag}
             <button
               type="button"
               onClick={() => onRemoveTag(tag)}
-              className="text-gray-600 hover:text-black"
+              className="text-gray-600 hover:text-secondary cursor-pointer"
             >
               ×
             </button>

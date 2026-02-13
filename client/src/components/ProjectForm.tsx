@@ -81,7 +81,7 @@ export default function ProjectForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, title: e.target.value }))
           }
-          className="w-full px-4 py-3 border border-gray-300 focus:border-black focus:outline-none"
+          className="w-full px-4 py-3 border border-secondary focus:bg-secondary/25 focus:outline-none"
           placeholder="Ex: Booki"
         />
       </div>
@@ -100,7 +100,7 @@ export default function ProjectForm({
               description: e.target.value,
             }))
           }
-          className="w-full px-4 py-3 border border-gray-300 focus:border-black focus:outline-none resize-none"
+          className="w-full px-4 py-3 border border-secondary focus:bg-secondary/25 focus:outline-none resize-none"
           placeholder="Décrivez votre projet..."
         />
       </div>
@@ -129,7 +129,7 @@ export default function ProjectForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, link: e.target.value }))
           }
-          className="w-full px-4 py-3 border border-gray-300 focus:border-black focus:outline-none"
+          className="w-full px-4 py-3 border border-secondarey focus:bg-secondary/25 focus:outline-none"
           placeholder="https://..."
         />
       </div>
@@ -137,14 +137,14 @@ export default function ProjectForm({
       <div className="flex gap-4 pt-4">
         <button
           type="submit"
-          className="flex-1 bg-black text-white px-6 py-4 hover:bg-gray-800 transition-colors font-bold"
+          className="flex-1 border border-secondary px-6 py-4 hover:bg-secondary/25 cursor-pointer transition-colors font-bold"
         >
           {initialData ? "MODIFIER" : "CRÉER"}
         </button>
         <button
           type="button"
           onClick={onClose}
-          className="px-8 border-2 border-black hover:bg-gray-100 transition-colors font-bold"
+          className="px-8 border border border-secondary hover:bg-secondary/25 cursor-pointer transition-colors font-bold"
         >
           ANNULER
         </button>
