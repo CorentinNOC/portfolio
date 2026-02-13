@@ -8,7 +8,7 @@ function Content() {
   if (error || !data) return <span>Oups, il y a un problème</span>;
 
   return (
-    <div className="lg:overflow-y-auto lg:w-[48%] lg:py-24 no-scrollbar">
+    <div className="lg:overflow-y-auto lg:w-[48%] lg:py-24 lg:mt-0 mt-6 no-scrollbar">
       <section id="about">
         <article className="flex">
           <p>
@@ -22,13 +22,13 @@ function Content() {
         </article>
       </section>
       <section id="experience" className="flex flex-col">
-        <article className="flex mt-16">
-          <p className="w-1/5">2022 - 2025</p>
-          <div className="w-2/3">
+        <article className="wave transition duration-500 lg:delay-300 group overflow-hidden relative flex flex-col lg:flex-row lg:mt-16 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
+          <p className="lg:w-1/5 mb-2 lg:mb-0">2022 - 2025</p>
+          <div className="lg:w-md">
             <h4 className="font-bold">
               North Star Network - Développeur front
             </h4>
-            <p>
+            <p className="text-sm mt-2">
               Intégration et développement front-end de sites médias à fort
               trafic sous WordPress. Travail à partir de maquettes pour
               l’intégration de thèmes et de blocs sur mesure (HTML, CSS,
@@ -39,32 +39,42 @@ function Content() {
               suivi des tâches via tickets internes, en lien avec les
               différentes équipes.
             </p>
-            <ul className="flex flex-wrap gap-2 mt-2 text-secondary">
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+            <ul className="flex flex-wrap gap-2 mt-2 text-sm">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 HTML & SCSS
               </li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 Javascript
               </li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">jQuery</li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                jQuery
+              </li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 PHP (Wordpress)
               </li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">Blade</li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                Blade
+              </li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 Webpack
               </li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">Git</li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">CI/CD</li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">Docker</li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                Git
+              </li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                CI/CD
+              </li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                Docker
+              </li>
             </ul>
           </div>
         </article>
-        <article className="flex mt-16">
-          <p className="w-1/5">2021 - 2022</p>
-          <div className="w-2/3">
+        <article className="wave transition duration-500 delay-300 group overflow-hidden relative flex lg:flex-row flex-col lg:mt-16 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
+          <p className="lg:w-1/5 mb-2 lg:mb-0">2021 - 2022</p>
+          <div className="lg:w-md">
             <h4 className="font-bold">Freelance</h4>
-            <p>
+            <p className="text-sm mt-2">
               Réalisation de sites web vitrines et e-commerce sous WordPress, de
               la conception de maquettes (Figma) à l’intégration sur mesure
               (HTML, CSS, JavaScript). Création de thèmes personnalisés, mise en
@@ -73,16 +83,20 @@ function Content() {
               webdesign, UX/UI, responsive design, pages de réservation,
               templates d’emails et refontes de sites.
             </p>
-            <ul className="flex flex-wrap gap-2 mt-2">
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">Figma</li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+            <ul className="flex flex-wrap gap-2 mt-2 text-sm">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                Figma
+              </li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 HTML & SCSS
               </li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 Javascript
               </li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">jQuery</li>
-              <li className="bg-secondary/25 px-3 py-1 rounded-full">
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
+                jQuery
+              </li>
+              <li className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full">
                 PHP (Wordpress)
               </li>
             </ul>
@@ -91,20 +105,23 @@ function Content() {
       </section>
       <section id="projet" className="flex-shrink-0">
         {data.map((project) => (
-          <article key={project.title} className="flex mb-4 mt-16">
+          <article
+            key={project.title}
+            className="wave transition duration-500 delay-300 group overflow-hidden relative flex flex-col-reverse lg:flex-row mb-4 lg:mt-16 mt-8 gap-4 transition border border-transparent hover:border-secondary hover:text-primary p-6"
+          >
             <img
-              className="w-[140px] h-[80px] object-cover"
+              className="max-w-[200px] lg:min-w-[140px] h-[110px] lg:h-[80px] object-cover"
               src={project.images[0]}
               alt=""
             />
-            <div className="w-2/3 ml-6">
-              <h2>{project.title}</h2>
-              <p>{project.description}</p>
-              <ul className="flex gap-2 mt-2">
+            <div className="w-full">
+              <h2 className="font-bold">{project.title}</h2>
+              <p className="text-sm mt-2">{project.description}</p>
+              <ul className="flex gap-2 mt-2 text-sm">
                 {project.tag.map((tag) => (
                   <li
                     key={tag}
-                    className="px-2 py-1 text-sm bg-secondary/25 rounded"
+                    className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full"
                   >
                     {tag}
                   </li>

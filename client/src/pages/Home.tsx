@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 export const Home = () => {
   return (
-    <main className="lg:flex lg:justify-between px-6 relative">
+    <main className="max-w-screen-xl mx-auto lg:flex lg:justify-between px-6 relative min-h-screen">
       <Header />
       <Content />
     </main>

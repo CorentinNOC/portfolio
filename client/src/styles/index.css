@@ -29,8 +29,31 @@
     color: var(--color-secondary);
   }
 
-  a {
-    text-decoration: underline;
+  .wave {
+    z-index: 0;
+  }
+
+  .wave:before {
+    content: "";
+    background-image: url(../assets/wave.png);
+    background-repeat: no-repeat;
+    transition: 1.5s ease;
+    height: 100%;
+    background-position: 600% 0;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .wave:hover::before {
+    background-position: center;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .wave:before {
+      content: none;
+    }
   }
 
   h3 {
@@ -100,7 +123,7 @@ main:before {
   opacity: 0.5;
   z-index: 1;
   pointer-events: none;
-  background-image: url(../assets/noise.f8142aea.png);
+  background-image: url(../assets/noise.png);
   width: 300%;
   height: 300%;
   animation: 8s steps(10, end) infinite grain;
