@@ -1,3 +1,5 @@
+import ContactForm from "./ContactForm";
+
 function Header() {
   return (
     <header className="flex lg:w-[48%] pt-6 flex-shrink-0 lg:py-24 lg:sticky lg:top-0 lg:max-h-screen">
@@ -9,7 +11,7 @@ function Header() {
           <h2 className="text-lg">Développeur Web</h2>
         </div>
 
-        <nav className="w-1/2 mt-16">
+        <nav className="w-1/2 mt-2">
           <ul className="flex flex-col w-auto gap-4 uppercase">
             <li className="flex justify-center w-[120px] w-3xs border hover:bg-secondary/25 p-2">
               <a href="#about">À propos</a>
@@ -31,6 +33,7 @@ function Header() {
             Github
           </a>
         </article>
+        <ContactForm />
       </div>
     </header>
   );

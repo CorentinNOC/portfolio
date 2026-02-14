@@ -9,7 +9,7 @@ function Content() {
 
   return (
     <div className="lg:overflow-y-auto lg:w-[48%] lg:py-24 lg:mt-0 mt-6 no-scrollbar">
-      <section id="about">
+      <section className="mb-8" id="about">
         <article className="flex">
           <p>
             Je m'appelle Corentin, j'ai 28 ans, développeur front-end. Après
@@ -22,7 +22,8 @@ function Content() {
         </article>
       </section>
       <section id="experience" className="flex flex-col">
-        <article className="wave transition duration-500 lg:delay-300 group overflow-hidden relative flex flex-col lg:flex-row lg:mt-16 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
+        <h2 className="text-xl font-bold uppercase mt-8">Expériences</h2>
+        <article className="wave transition duration-500 lg:delay-300 group overflow-hidden relative flex flex-col lg:flex-row lg:mt-8 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
           <p className="lg:w-1/5 mb-2 lg:mb-0">2022 - 2025</p>
           <div className="lg:w-md">
             <h4 className="font-bold">
@@ -70,7 +71,7 @@ function Content() {
             </ul>
           </div>
         </article>
-        <article className="wave transition duration-500 delay-300 group overflow-hidden relative flex lg:flex-row flex-col lg:mt-16 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
+        <article className="wave transition duration-500 delay-300 group overflow-hidden relative flex lg:flex-row flex-col lg:mt-8 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
           <p className="lg:w-1/5 mb-2 lg:mb-0">2021 - 2022</p>
           <div className="lg:w-md">
             <h4 className="font-bold">Freelance</h4>
@@ -104,10 +105,11 @@ function Content() {
         </article>
       </section>
       <section id="projet" className="flex-shrink-0">
+        <h2 className="text-xl font-bold uppercase my-8">Projets</h2>
         {data.map((project) => (
           <article
             key={project.title}
-            className="wave transition duration-500 delay-300 group overflow-hidden relative flex flex-col-reverse lg:flex-row mb-4 lg:mt-16 mt-8 gap-4 transition border border-transparent hover:border-secondary hover:text-primary p-6"
+            className="wave transition duration-500 delay-300 group overflow-hidden relative flex flex-col-reverse lg:flex-row mb-4 lg:mt-8 mt-8 gap-4 transition border border-transparent hover:border-secondary hover:text-primary p-6"
           >
             <img
               className="max-w-[200px] lg:min-w-[140px] h-[110px] lg:h-[80px] object-cover"
