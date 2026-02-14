@@ -22,11 +22,13 @@ function Content() {
         </article>
       </section>
       <section id="experience" className="flex flex-col">
-        <h2 className="text-xl font-bold uppercase mt-8">Expériences</h2>
+        <h2 className="text-xl text-third font-bold uppercase mt-8">
+          Expériences
+        </h2>
         <article className="wave transition duration-500 lg:delay-300 group overflow-hidden relative flex flex-col lg:flex-row lg:mt-8 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
           <p className="lg:w-1/5 mb-2 lg:mb-0">2022 - 2025</p>
           <div className="lg:w-md">
-            <h4 className="font-bold">
+            <h4 className="font-bold text-third group-hover:text-primary transition-colors duration-500 delay-300">
               North Star Network - Développeur front
             </h4>
             <p className="text-sm mt-2">
@@ -74,7 +76,9 @@ function Content() {
         <article className="wave transition duration-500 delay-300 group overflow-hidden relative flex lg:flex-row flex-col lg:mt-8 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6">
           <p className="lg:w-1/5 mb-2 lg:mb-0">2021 - 2022</p>
           <div className="lg:w-md">
-            <h4 className="font-bold">Freelance</h4>
+            <h4 className="font-bold text-third group-hover:text-primary transition-colors duration-500 delay-300">
+              Freelance
+            </h4>
             <p className="text-sm mt-2">
               Réalisation de sites web vitrines et e-commerce sous WordPress, de
               la conception de maquettes (Figma) à l’intégration sur mesure
@@ -105,7 +109,7 @@ function Content() {
         </article>
       </section>
       <section id="projet" className="flex-shrink-0">
-        <h2 className="text-xl font-bold uppercase my-8">Projets</h2>
+        <h2 className="text-xl text-third font-bold uppercase my-8">Projets</h2>
         {data.map((project) => (
           <article
             key={project.title}
@@ -117,7 +121,9 @@ function Content() {
               alt=""
             />
             <div className="w-full">
-              <h2 className="font-bold">{project.title}</h2>
+              <h2 className="font-bold text-third group-hover:text-primary transition-colors duration-500 delay-300">
+                {project.title}
+              </h2>
               <p className="text-sm mt-2">{project.description}</p>
               <ul className="flex gap-2 mt-2 text-sm">
                 {project.tag.map((tag) => (

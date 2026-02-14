@@ -8,7 +8,7 @@ function Header() {
           <h1 className="text-4xl font-bold tracking-[.25em]">
             Corentin Nicolas
           </h1>
-          <h2 className="text-lg">Développeur Web</h2>
+          <h2 className="text-third text-lg">Développeur Web</h2>
         </div>
 
         <nav className="w-1/2 mt-2">
