@@ -1,0 +1,32 @@
+[
+  {
+    "title": "North Star Network - Développeur front",
+    "date": "2022 - 2025",
+    "description": "Intégration et développement front-end de sites médias à fort trafic sous WordPress. Travail à partir de maquettes pour l’intégration de thèmes et de blocs sur mesure (HTML, CSS, JavaScript), avec mise en place de la logique des templates et de l’affichage via PHP et Blade. Optimisation des performances, de la maintenabilité et du build front grâce à Webpack. Travail en environnement collaboratif avec Git et CI/CD, tests via Docker, et suivi des tâches via tickets internes, en lien avec les différentes équipes.",
+    "tag": [
+      "HTML & SCSS",
+      "Javascript",
+      "jQuery",
+      "PHP (Wordpress)",
+      "Blade",
+      "Webpack",
+      "Git",
+      "CI/CD",
+      "Docker"
+    ],
+    "link": "https://fr.linkedin.com/"
+  },
+  {
+    "title": "Freelance",
+    "date": "2021 - 2022",
+    "description": "Réalisation de sites web vitrines et e-commerce sous WordPress, de la conception de maquettes (Figma) à l’intégration sur mesure (HTML, CSS, JavaScript). Création de thèmes personnalisés, mise en place de plugins facilitant l’ajout de contenu et intégration de solutions e-commerce (WooCommerce). Interventions variées incluant webdesign, UX/UI, responsive design, pages de réservation, templates d’emails et refontes de sites.",
+    "tag": [
+      "HTML & SCSS",
+      "Javascript",
+      "jQuery",
+      "PHP (Wordpress)",
+      "Figma"
+    ],
+    "link": "https://fr.linkedin.com/"
+  }
+]
