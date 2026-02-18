@@ -5,7 +5,7 @@ const app = express();
 
 const projectRoutes = require("./routes/project");
 const experienceRoutes = require("./routes/experience");
-const userRoutes = require("./user");
+const userRoutes = require("./routes/auth");
 const path = require("path");
 
 app.use(express.json());
