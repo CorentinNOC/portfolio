@@ -1,8 +1,8 @@
-export interface ProjectType {
+export interface ExperienceType {
   id?: string;
   title: string;
+  date: string;
   description: string;
   tag: string[];
-  images: string[];
   link: string;
 }

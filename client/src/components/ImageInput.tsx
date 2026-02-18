@@ -24,13 +24,13 @@ export default function ImageInput({
           onKeyDown={(e) =>
             e.key === "Enter" && (e.preventDefault(), onAddImage())
           }
-          className="flex-1 px-4 py-3 border border-gray-300 focus:border-black focus:outline-none"
+          className="flex-1 px-4 py-3 border border-secondary focus:bg-secondary/15 focus:outline-none"
           placeholder="https://..."
         />
         <button
           type="button"
           onClick={onAddImage}
-          className="px-6 bg-gray-200 hover:bg-gray-300 transition-colors"
+          className="px-6 border border-secondary hover:bg-secondary/25 cursor-pointer transition-colors"
         >
           +
         </button>
@@ -39,13 +39,13 @@ export default function ImageInput({
         {images.map((image, index) => (
           <div
             key={index}
-            className="flex items-center justify-between p-3 bg-gray-50"
+            className="flex items-center justify-between p-3 border border-secondary bg-secondary/25"
           >
             <span className="text-sm truncate flex-1">{image}</span>
             <button
               type="button"
               onClick={() => onRemoveImage(image)}
-              className="ml-2 text-gray-600 hover:text-black"
+              className="ml-2 text-gray-600 hover:text-secondary cursor-pointer"
             >
               ×
             </button>
