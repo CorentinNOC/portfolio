@@ -1,13 +1,13 @@
-import type { Project } from "../types/project.types";
+import type { ProjectType } from "../types/project.types";
 
 export default function ProjectCard({
   project,
   onDelete,
   onEdit,
 }: {
-  project: Project;
+  project: ProjectType;
   onDelete: (id: string) => void;
-  onEdit?: (project: Project) => void;
+  onEdit?: (project: ProjectType) => void;
 }) {
   return (
     <div className="border-l-4 border-secondary pl-8 relative group">

@@ -1,34 +1,32 @@
 import { useState } from "react";
-import type { Project } from "../types/project.types";
+import type { ProjectType } from "../types/project.types";
 import ImageInput from "./ImageInput";
 import TagInput from "./TagInput";
-
-const emptyProject: Project = {
-  title: "",
-  description: "",
-  tag: [],
-  images: [],
-  link: "",
-};
 
 export default function ProjectForm({
   initialData,
   onSubmit,
   onClose,
 }: {
-  initialData?: Project | null;
-  onSubmit: (project: Project) => void;
+  initialData?: ProjectType | null;
+  onSubmit: (
+    project: Omit<ProjectType, "id" | "images">,
+    imageFiles: File[],
+  ) => void;
   onClose: () => void;
 }) {
-  const [formData, setFormData] = useState<Project>(
-    initialData ?? emptyProject,
-  );
+  const [formData, setFormData] = useState({
+    title: initialData?.title || "",
+    description: initialData?.description || "",
+    tag: initialData?.tag || [],
+    link: initialData?.link || "",
+  });
   const [currentTag, setCurrentTag] = useState("");
-  const [currentImage, setCurrentImage] = useState("");
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit(formData, imageFiles);
     onClose();
   };
 
@@ -47,24 +45,6 @@ export default function ProjectForm({
     setFormData((prev) => ({
       ...prev,
       tag: prev.tag.filter((tag) => tag !== tagToRemove),
-    }));
-  };
-
-  const addImage = () => {
-    const image = currentImage.trim();
-    if (!image || formData.images.includes(image)) return;
-
-    setFormData((prev) => ({
-      ...prev,
-      images: [...prev.images, image],
-    }));
-    setCurrentImage("");
-  };
-
-  const removeImage = (imageToRemove: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      images: prev.images.filter((img) => img !== imageToRemove),
     }));
   };
 
@@ -113,13 +93,7 @@ export default function ProjectForm({
         onRemoveTag={removeTag}
       />
 
-      <ImageInput
-        images={formData.images}
-        currentImage={currentImage}
-        onCurrentImageChange={setCurrentImage}
-        onAddImage={addImage}
-        onRemoveImage={removeImage}
-      />
+      <ImageInput images={imageFiles} onImagesChange={setImageFiles} />
 
       <div>
         <label className="block text-sm font-bold mb-2 uppercase">Lien</label>
@@ -129,7 +103,7 @@ export default function ProjectForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, link: e.target.value }))
           }
-          className="w-full px-4 py-3 border border-secondarey focus:bg-secondary/25 focus:outline-none"
+          className="w-full px-4 py-3 border border-secondary focus:bg-secondary/25 focus:outline-none"
           placeholder="https://..."
         />
       </div>
@@ -144,7 +118,7 @@ export default function ProjectForm({
         <button
           type="button"
           onClick={onClose}
-          className="px-8 border border border-secondary hover:bg-secondary/25 cursor-pointer transition-colors font-bold"
+          className="px-8 border border-secondary hover:bg-secondary/25 cursor-pointer transition-colors font-bold"
         >
           ANNULER
         </button>

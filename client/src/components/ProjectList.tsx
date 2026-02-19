@@ -1,4 +1,4 @@
-import type { Project } from "../types/project.types";
+import type { ProjectType } from "../types/project.types";
 import ProjectCard from "./ProjectCard";
 
 export default function ProjectList({
@@ -6,9 +6,9 @@ export default function ProjectList({
   onDelete,
   onEdit,
 }: {
-  projects: Project[];
+  projects: ProjectType[];
   onDelete: (id: string) => void;
-  onEdit?: (project: Project) => void;
+  onEdit?: (project: ProjectType) => void;
 }) {
   return (
     <div className="space-y-8">

@@ -1,5 +1,5 @@
 import ProjectForm from "../components/ProjectForm";
-import type { Project } from "../types/project.types";
+import type { ProjectType } from "../types/project.types";
 
 export default function ProjectModal({
   isOpen,
@@ -9,8 +9,11 @@ export default function ProjectModal({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (project: Project) => void;
-  initialData?: Project | null;
+  onSubmit: (
+    project: Omit<ProjectType, "id" | "images">,
+    imageFiles: File[],
+  ) => void;
+  initialData?: ProjectType | null;
 }) {
   if (!isOpen) return null;
 
