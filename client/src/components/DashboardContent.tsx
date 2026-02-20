@@ -1,23 +1,38 @@
 import { useState } from "react";
+import { experienceService } from "../services/experienceService";
 import { projectService } from "../services/projectService";
+import type { ExperienceType } from "../types/experience.types";
 import type { ProjectType } from "../types/project.types";
+import ExperienceList from "./ExperienceList";
+import ExperienceModal from "./ExperienceModal";
 import HeaderDashboard from "./HeaderDashboard";
 import ProjectList from "./ProjectList";
 import ProjectModal from "./ProjectModal";
 
 export default function DashboardContent({
   initialProjects,
+  initialExperiences,
 }: {
   initialProjects: ProjectType[];
+  initialExperiences: ExperienceType[];
 }) {
   const [projects, setProjects] = useState<ProjectType[]>(initialProjects);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [experiences, setExperiences] =
+    useState<ExperienceType[]>(initialExperiences);
+
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+  const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
+
   const [editingProject, setEditingProject] = useState<ProjectType | null>(
     null,
   );
+  const [editingExperience, setEditingExperience] =
+    useState<ExperienceType | null>(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // --- PROJECTS ---
   const loadProjects = async () => {
     try {
       setIsLoading(true);
@@ -32,22 +47,22 @@ export default function DashboardContent({
     }
   };
 
-  const openModal = () => {
+  const openProjectModal = () => {
     setEditingProject(null);
-    setIsModalOpen(true);
+    setIsProjectModalOpen(true);
   };
 
-  const openEditModal = (project: ProjectType) => {
+  const openEditProjectModal = (project: ProjectType) => {
     setEditingProject(project);
-    setIsModalOpen(true);
+    setIsProjectModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeProjectModal = () => {
+    setIsProjectModalOpen(false);
     setEditingProject(null);
   };
 
-  const handleSubmit = async (
+  const handleProjectSubmit = async (
     project: Omit<ProjectType, "id" | "images">,
     imageFiles: File[],
   ) => {
@@ -66,7 +81,7 @@ export default function DashboardContent({
       }
 
       await loadProjects();
-      closeModal();
+      closeProjectModal();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Une erreur est survenue");
       console.error("Erreur:", err);
@@ -75,7 +90,7 @@ export default function DashboardContent({
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleProjectDelete = async (id: string) => {
     if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
       return;
     }
@@ -85,6 +100,80 @@ export default function DashboardContent({
       setError(null);
       await projectService.delete(id);
       await loadProjects();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
+      console.error("Erreur:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // --- EXPERIENCES ---
+  const loadExperiences = async () => {
+    try {
+      setIsLoading(true);
+      const data = await experienceService.getAll();
+      setExperiences(data);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
+      console.error("Erreur:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const openExperienceModal = () => {
+    setEditingExperience(null);
+    setIsExperienceModalOpen(true);
+  };
+
+  const openEditExperienceModal = (experience: ExperienceType) => {
+    setEditingExperience(experience);
+    setIsExperienceModalOpen(true);
+  };
+
+  const closeExperienceModal = () => {
+    setIsExperienceModalOpen(false);
+    setEditingExperience(null);
+  };
+
+  const handleExperienceSubmit = async (
+    experience: Omit<ExperienceType, "id">,
+  ) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      if (editingExperience?.id) {
+        await experienceService.update(
+          editingExperience.id,
+          experience as ExperienceType,
+        );
+      } else {
+        await experienceService.create(experience as ExperienceType);
+      }
+
+      await loadExperiences();
+      closeExperienceModal();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
+      console.error("Erreur:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleExperienceDelete = async (id: string) => {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cette expérience ?")) {
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      setError(null);
+      await experienceService.delete(id);
+      await loadExperiences();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Une erreur est survenue");
       console.error("Erreur:", err);
@@ -112,16 +201,30 @@ export default function DashboardContent({
 
         <ProjectList
           projects={projects}
-          onDelete={handleDelete}
-          onEdit={openEditModal}
-          onAddClick={openModal}
+          onDelete={handleProjectDelete}
+          onEdit={openEditProjectModal}
+          onAddClick={openProjectModal}
+        />
+
+        <ExperienceList
+          experiences={experiences}
+          onDelete={handleExperienceDelete}
+          onEdit={openEditExperienceModal}
+          onAddClick={openExperienceModal}
         />
 
         <ProjectModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onSubmit={handleSubmit}
+          isOpen={isProjectModalOpen}
+          onClose={closeProjectModal}
+          onSubmit={handleProjectSubmit}
           initialData={editingProject}
+        />
+
+        <ExperienceModal
+          isOpen={isExperienceModalOpen}
+          onClose={closeExperienceModal}
+          onSubmit={handleExperienceSubmit}
+          initialData={editingExperience}
         />
       </div>
     </main>

@@ -32,13 +32,13 @@ exports.createExperience = async (req, res) => {
 
 exports.modifyExperience = async (req, res) => {
   try {
-    const experienceObject = JSON.parse(req.body.experience);
-
     const experience = await Experience.findById(req.params.id);
 
     if (!experience) {
       return res.status(404).json({ error: "Expérience non trouvée" });
     }
+
+    const experienceObject = req.body.experience || req.body;
 
     await Experience.updateOne(
       { _id: req.params.id },
