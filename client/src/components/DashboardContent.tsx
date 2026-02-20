@@ -96,7 +96,7 @@ export default function DashboardContent({
   return (
     <main className="min-h-screen p-12">
       <div className="max-w-6xl mx-auto">
-        <HeaderDashboard onAddClick={openModal} />
+        <HeaderDashboard />
 
         {error && (
           <div className="mb-6 p-4 border border-red-500 bg-red-50 text-red-700">
@@ -114,6 +114,7 @@ export default function DashboardContent({
           projects={projects}
           onDelete={handleDelete}
           onEdit={openEditModal}
+          onAddClick={openModal}
         />
 
         <ProjectModal

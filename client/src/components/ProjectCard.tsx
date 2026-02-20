@@ -12,7 +12,7 @@ export default function ProjectCard({
   return (
     <div className="border-l-4 border-secondary pl-8 relative group">
       <div className="flex justify-between items-start mb-4">
-        <h2 className="text-2xl font-bold">{project.title}</h2>
+        <h2 className="text-xl font-bold">{project.title}</h2>
         <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           {onEdit && (
             <button
