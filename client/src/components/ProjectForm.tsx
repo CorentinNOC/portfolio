@@ -12,6 +12,7 @@ export default function ProjectForm({
   onSubmit: (
     project: Omit<ProjectType, "id" | "images">,
     imageFiles: File[],
+    imagesToDelete: string[],
   ) => void;
   onClose: () => void;
 }) {
@@ -23,10 +24,14 @@ export default function ProjectForm({
   });
   const [currentTag, setCurrentTag] = useState("");
   const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [existingImages, setExistingImages] = useState<string[]>(
+    initialData?.images || [],
+  );
+  const [imagesToDelete, setImagesToDelete] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData, imageFiles);
+    onSubmit(formData, imageFiles, imagesToDelete);
     onClose();
   };
 
@@ -46,6 +51,11 @@ export default function ProjectForm({
       ...prev,
       tag: prev.tag.filter((tag) => tag !== tagToRemove),
     }));
+  };
+
+  const removeExistingImage = (imageUrl: string) => {
+    setExistingImages((prev) => prev.filter((url) => url !== imageUrl));
+    setImagesToDelete((prev) => [...prev, imageUrl]);
   };
 
   return (
@@ -93,7 +103,12 @@ export default function ProjectForm({
         onRemoveTag={removeTag}
       />
 
-      <ImageInput images={imageFiles} onImagesChange={setImageFiles} />
+      <ImageInput
+        images={imageFiles}
+        existingImages={existingImages}
+        onImagesChange={setImageFiles}
+        onRemoveExisting={removeExistingImage}
+      />
 
       <div>
         <label className="block text-sm font-bold mb-2 uppercase">Lien</label>

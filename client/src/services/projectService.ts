@@ -80,6 +80,7 @@ export const projectService = {
     id: string,
     project: ProjectType,
     imageFiles?: File[],
+    imagesToDelete?: string[],
   ): Promise<void> {
     const formData = new FormData();
 
@@ -87,6 +88,10 @@ export const projectService = {
     formData.append("description", project.description);
     formData.append("tag", JSON.stringify(project.tag));
     formData.append("link", project.link);
+
+    if (imagesToDelete && imagesToDelete.length > 0) {
+      formData.append("imagesToDelete", JSON.stringify(imagesToDelete));
+    }
 
     if (imageFiles && imageFiles.length > 0) {
       imageFiles.forEach((file) => {

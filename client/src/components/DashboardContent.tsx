@@ -65,6 +65,7 @@ export default function DashboardContent({
   const handleProjectSubmit = async (
     project: Omit<ProjectType, "id" | "images">,
     imageFiles: File[],
+    imagesToDelete: string[],
   ) => {
     try {
       setIsLoading(true);
@@ -75,6 +76,7 @@ export default function DashboardContent({
           editingProject.id,
           project as ProjectType,
           imageFiles,
+          imagesToDelete,
         );
       } else {
         await projectService.create(project as ProjectType, imageFiles);
