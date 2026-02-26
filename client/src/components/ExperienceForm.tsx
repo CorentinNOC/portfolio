@@ -1,37 +1,28 @@
 import { useState } from "react";
-import type { ProjectType } from "../types/project.types";
-import ImageInput from "./ImageInput";
+import type { ExperienceType } from "../types/experience.types";
 import TagInput from "./TagInput";
 
-export default function ProjectForm({
+export default function ExperienceForm({
   initialData,
   onSubmit,
   onClose,
 }: {
-  initialData?: ProjectType | null;
-  onSubmit: (
-    project: Omit<ProjectType, "id" | "images">,
-    imageFiles: File[],
-    imagesToDelete: string[],
-  ) => void;
+  initialData?: ExperienceType | null;
+  onSubmit: (experience: Omit<ExperienceType, "id">) => void;
   onClose: () => void;
 }) {
   const [formData, setFormData] = useState({
     title: initialData?.title || "",
+    date: initialData?.date || "",
     description: initialData?.description || "",
     tag: initialData?.tag || [],
     link: initialData?.link || "",
   });
   const [currentTag, setCurrentTag] = useState("");
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [existingImages, setExistingImages] = useState<string[]>(
-    initialData?.images || [],
-  );
-  const [imagesToDelete, setImagesToDelete] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData, imageFiles, imagesToDelete);
+    onSubmit(formData);
     onClose();
   };
 
@@ -53,11 +44,6 @@ export default function ProjectForm({
     }));
   };
 
-  const removeExistingImage = (imageUrl: string) => {
-    setExistingImages((prev) => prev.filter((url) => url !== imageUrl));
-    setImagesToDelete((prev) => [...prev, imageUrl]);
-  };
-
   return (
     <form onSubmit={handleSubmit} className="p-8 space-y-6">
       <div>
@@ -72,7 +58,21 @@ export default function ProjectForm({
             setFormData((prev) => ({ ...prev, title: e.target.value }))
           }
           className="w-full px-4 py-3 border border-secondary focus:bg-secondary/25 focus:outline-none"
-          placeholder="Ex: Booki"
+          placeholder="Ex: Développeur Frontend"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-bold mb-2 uppercase">Date *</label>
+        <input
+          type="text"
+          required
+          value={formData.date}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, date: e.target.value }))
+          }
+          className="w-full px-4 py-3 border border-secondary focus:bg-secondary/25 focus:outline-none"
+          placeholder="Ex: 2023 - 2024"
         />
       </div>
 
@@ -91,7 +91,7 @@ export default function ProjectForm({
             }))
           }
           className="w-full px-4 py-3 border border-secondary focus:bg-secondary/25 focus:outline-none resize-none"
-          placeholder="Décrivez votre projet..."
+          placeholder="Décrivez votre expérience..."
         />
       </div>
 
@@ -101,13 +101,6 @@ export default function ProjectForm({
         onCurrentTagChange={setCurrentTag}
         onAddTag={addTag}
         onRemoveTag={removeTag}
-      />
-
-      <ImageInput
-        images={imageFiles}
-        existingImages={existingImages}
-        onImagesChange={setImageFiles}
-        onRemoveExisting={removeExistingImage}
       />
 
       <div>

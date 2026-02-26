@@ -1,11 +1,21 @@
-import { useFetch } from "../hooks/useFetch";
-import type { ExperienceType } from "../types/experience.type";
+import { useEffect, useState } from "react";
+import { experienceService } from "../services/experienceService";
+import type { ExperienceType } from "../types/experience.types";
 
 const Experience = () => {
-  const { data, isLoading, error } =
-    useFetch<ExperienceType[]>("/experiences.json");
+  const [data, setData] = useState<ExperienceType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  if (isLoading) return <p>load</p>;
+  useEffect(() => {
+    experienceService
+      .getAll()
+      .then(setData)
+      .catch(setError)
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  if (isLoading) return <p>Chargement...</p>;
   if (error || !data) return <span>Oups, il y a un problème</span>;
 
   return (
@@ -15,7 +25,7 @@ const Experience = () => {
       </h2>
       {data.map((experience) => (
         <article
-          key={experience.title}
+          key={experience.id}
           className="wave transition duration-500 delay-300 group overflow-hidden relative flex lg:flex-row flex-col lg:mt-8 mt-6 justify-between border border-transparent hover:border-secondary hover:text-primary p-6"
         >
           <p className="lg:w-1/5 mb-2 lg:mb-0">{experience.date}</p>
@@ -25,9 +35,9 @@ const Experience = () => {
             </h4>
             <p className="text-sm mt-2">{experience.description}</p>
             <ul className="flex flex-wrap gap-2 mt-2 text-sm">
-              {experience.tag.map((tag) => (
+              {experience.tag.map((tag, index) => (
                 <li
-                  key={tag}
+                  key={`${tag}-${index}`}
                   className="bg-secondary/25 group-hover:bg-primary/25 transition-colors duration-500 delay-300 px-3 py-1 rounded-full"
                 >
                   {tag}

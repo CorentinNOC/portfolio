@@ -16,9 +16,22 @@ const cleanupFiles = (files) => {
 const deleteImage = async (imageUrl) => {
   try {
     const filename = imageUrl.split("/images/")[1];
-    await fs.promises.unlink(`images/${filename}`);
+
+    if (!filename) {
+      console.error("Nom de fichier invalide:", imageUrl);
+      return;
+    }
+
+    const filePath = `images/${filename}`;
+
+    if (fs.existsSync(filePath)) {
+      await fs.promises.unlink(filePath);
+      console.log(`✅ Image supprimée: ${filename}`);
+    } else {
+      console.warn(`⚠️ Fichier introuvable: ${filePath}`);
+    }
   } catch (err) {
-    console.error(`Impossible de supprimer l'image:`, err.message);
+    console.error(`❌ Impossible de supprimer l'image:`, err.message);
   }
 };
 
@@ -67,15 +80,22 @@ exports.modifyProject = async (req, res) => {
       return res.status(404).json({ error: "Projet introuvable" });
     }
 
-    let imageUrls = project.imageUrls;
+    let imageUrls = [...project.imageUrls];
+
+    if (req.body.imagesToDelete) {
+      const imagesToDelete = JSON.parse(req.body.imagesToDelete);
+
+      await Promise.all(imagesToDelete.map(deleteImage));
+
+      imageUrls = imageUrls.filter((url) => !imagesToDelete.includes(url));
+    }
 
     if (req.files && req.files.length > 0) {
-      await Promise.all(project.imageUrls.map(deleteImage));
-
-      imageUrls = req.files.map(
+      const newImageUrls = req.files.map(
         (file) =>
           `${req.protocol}://${req.get("host")}/images/${file.filename}`,
       );
+      imageUrls = [...imageUrls, ...newImageUrls];
     }
 
     const projectObject = {
