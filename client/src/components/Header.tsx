@@ -3,7 +3,7 @@ import ContactForm from "./ContactForm";
 function Header() {
   return (
     <header className="flex lg:w-[48%] pt-6 flex-shrink-0 lg:py-20 lg:sticky lg:top-0 lg:max-h-screen">
-      <div className="flex lg:flex-col lg:flex--no-wrap flex-wrap h-full">
+      <div className="flex lg:flex-no-wrap flex-wrap h-full">
         <div className="title pl-4">
           <h1 className="text-4xl font-bold tracking-[.25em]">
             Corentin Nicolas
