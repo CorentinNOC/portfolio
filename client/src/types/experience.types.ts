@@ -5,4 +5,6 @@ export interface ExperienceType {
   description: string;
   tag: string[];
   link: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

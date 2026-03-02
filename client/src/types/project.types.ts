@@ -5,4 +5,6 @@ export interface ProjectType {
   tag: string[];
   images: string[];
   link: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -37,13 +37,12 @@ const deleteImage = async (imageUrl) => {
 
 exports.getProjects = async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ createdAt: -1 });
     res.status(200).json(projects);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
 exports.createProject = async (req, res) => {
   try {
     if (!req.body.project) {
