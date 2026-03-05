@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 
@@ -9,6 +10,13 @@ const userRoutes = require("./routes/auth");
 const path = require("path");
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://corentinnicolas.vercel.app"],
+    credentials: true,
+  }),
+);
 
 mongoose
   .connect(process.env.MONGO_URI)
