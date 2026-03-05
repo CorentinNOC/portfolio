@@ -1,5 +1,6 @@
 import type { FormEvent } from "react";
 import React, { useState } from "react";
+import { contactService } from "../services/contactService";
 
 interface FormData {
   prenom: string;
@@ -26,6 +27,7 @@ const ContactForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -79,11 +81,10 @@ const ContactForm: React.FC = () => {
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      console.log("Données du formulaire:", formData);
+      await contactService.sendMessage(formData);
 
       setSubmitSuccess(true);
       setFormData({
@@ -96,6 +97,11 @@ const ContactForm: React.FC = () => {
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
       console.error("Erreur lors de l'envoi:", error);
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Une erreur est survenue lors de l'envoi",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -106,8 +112,16 @@ const ContactForm: React.FC = () => {
       <h2 className="text-xl font-bold mb-4">Contactez-moi</h2>
 
       {submitSuccess && (
-        <div className="mb-6 p-4 bg-secondary/25 border border-secondary">
-          <p className="font-medium">✓ Message envoyé avec succès !</p>
+        <div className="mb-6 p-4 bg-green-50 border border-green-500">
+          <p className="font-medium text-green-700">
+            ✓ Message envoyé avec succès !
+          </p>
+        </div>
+      )}
+
+      {submitError && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-500">
+          <p className="font-medium text-red-700">✕ {submitError}</p>
         </div>
       )}
 
