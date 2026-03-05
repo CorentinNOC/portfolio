@@ -39,9 +39,11 @@ Disallow: /login`);
 const projectRoutes = require("./routes/project");
 const experienceRoutes = require("./routes/experience");
 const userRoutes = require("./routes/auth");
+const contactRoutes = require("./routes/contact");
 
 app.use("/api/projects", projectRoutes);
 app.use("/api/experiences", experienceRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/api/contact", contactRoutes);
 
 module.exports = app;
