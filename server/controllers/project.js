@@ -54,7 +54,7 @@ exports.createProject = async (req, res) => {
     delete projectObject._id;
 
     const imageUrls = req.files.map(
-      (file) => `${req.protocol}://${req.get("host")}/images/${file.filename}`,
+      (file) => `${process.env.BASE_URL}/images/${file.filename}`,
     );
 
     const project = new Project({
@@ -91,8 +91,7 @@ exports.modifyProject = async (req, res) => {
 
     if (req.files && req.files.length > 0) {
       const newImageUrls = req.files.map(
-        (file) =>
-          `${req.protocol}://${req.get("host")}/images/${file.filename}`,
+        (file) => `${process.env.BASE_URL}/images/${file.filename}`,
       );
       imageUrls = [...imageUrls, ...newImageUrls];
     }
