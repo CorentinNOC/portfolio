@@ -13,7 +13,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://corentinnicolas.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://portfolio-drab-nine-4fsye5z9gd.vercel.app/",
+    ],
     credentials: true,
   }),
 );
