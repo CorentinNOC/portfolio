@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Bloquer seulement les pages admin
+Disallow: /dashboard
+Disallow: /login

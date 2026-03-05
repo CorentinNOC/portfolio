@@ -46,7 +46,7 @@ const Project = () => {
             <img
               className="max-w-[200px] lg:min-w-[140px] h-[110px] lg:h-[80px] object-cover"
               src={project.images[0]}
-              alt={project.title}
+              alt={`Capture d'écran du projet ${project.title}`}
             />
             <div className="w-full">
               <h2 className="font-bold text-third group-hover:text-primary transition-colors duration-500 delay-300">

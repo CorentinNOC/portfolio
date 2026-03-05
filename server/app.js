@@ -28,6 +28,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send(`User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /login`);
+});
+
 app.use("/api/projects", projectRoutes);
 app.use("/api/experiences", experienceRoutes);
 app.use("/api/auth", userRoutes);
