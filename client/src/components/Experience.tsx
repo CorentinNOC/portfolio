@@ -20,9 +20,9 @@ const Experience = () => {
 
   return (
     <section id="experience" className="flex flex-col">
-      <h2 className="text-xl text-third font-bold uppercase mt-8">
+      <h3 className="text-xl text-third font-bold uppercase mt-8">
         Expériences
-      </h2>
+      </h3>
       {data.map((experience) => (
         <article
           key={experience.id}

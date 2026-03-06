@@ -109,7 +109,7 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="w-full border border-secondary mt-8 p-6">
-      <h2 className="text-xl font-bold mb-4">Contactez-moi</h2>
+      <h3 className="text-xl font-bold mb-4">Contactez-moi</h3>
 
       {submitSuccess && (
         <div className="mb-6 p-4 bg-green-50 border border-green-500">

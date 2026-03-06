@@ -36,7 +36,7 @@ const Project = () => {
   return (
     <>
       <section id="projet" className="flex-shrink-0">
-        <h2 className="text-xl text-third font-bold uppercase my-8">Projets</h2>
+        <h3 className="text-xl text-third font-bold uppercase my-8">Projets</h3>
         {data.map((project) => (
           <article
             key={project.id}
@@ -49,10 +49,10 @@ const Project = () => {
               alt={`Capture d'écran du projet ${project.title}`}
             />
             <div className="w-full">
-              <h2 className="font-bold text-third group-hover:text-primary transition-colors duration-500 delay-300">
+              <h4 className="font-bold text-third group-hover:text-primary transition-colors duration-500 delay-300">
                 {project.title}
-              </h2>
-              <p className="text-sm mt-2 line-clamp-2">{project.description}</p>
+              </h4>
+              <p className="text-sm mt-2 line-clamp-3">{project.description}</p>
               <ul className="flex gap-2 mt-2 text-sm">
                 {project.tag.slice(0, 3).map((tag, index) => (
                   <li
