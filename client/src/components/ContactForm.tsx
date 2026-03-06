@@ -108,7 +108,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="w-full border border-secondary mt-8 p-6">
+    <section className="w-full border border-secondary mt-8 p-6">
       <h3 className="text-xl font-bold mb-4">Contactez-moi</h3>
 
       {submitSuccess && (
@@ -246,7 +246,7 @@ const ContactForm: React.FC = () => {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 
