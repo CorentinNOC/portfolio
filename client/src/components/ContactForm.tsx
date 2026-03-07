@@ -108,7 +108,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <section className="w-full border border-secondary mt-8 p-6">
+    <section className="w-full border border-secondary mt-8 p-6 overflow-y-scroll max-h-[55vh]">
       <h3 className="text-xl font-bold mb-4">Contactez-moi</h3>
 
       {submitSuccess && (
